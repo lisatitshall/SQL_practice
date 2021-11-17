@@ -47,22 +47,22 @@ SELECT first_name FROM patients
 GROUP BY first_name
 HAVING COUNT(first_name) = 1;
 
-Show patient_id and first_name from patients where their first name starts and ends with 's' and is at least 5 characters long
+-- Show patient_id and first_name from patients where their first name starts and ends with 's' and is at least 5 characters long
 SELECT patient_id, first_name FROM patients
 WHERE LEN(first_name) > 4 AND first_name LIKE 's%s';
 
-Show patient_id, first_name, last_name from patients whos primary_diagnosis is 'Dementia' (admissions table).
+-- Show patient_id, first_name, last_name from patients whos primary_diagnosis is 'Dementia' (admissions table).
 SELECT p.patient_id, p.first_name, p.last_name
 FROM patients p
 JOIN admissions a ON p.patient_id=a.patient_id
 WHERE a.primary_diagnosis = 'Dementia';
 
-Show patient_id, primary_diagnosis from admissions. Find patients admitted multiple times for the same primary_diagnosis
+-- Show patient_id, primary_diagnosis from admissions. Find patients admitted multiple times for the same primary_diagnosis
 SELECT patient_id, primary_diagnosis FROM admissions
 GROUP BY patient_id, primary_diagnosis
 HAVING COUNT(primary_diagnosis) > 1;
 
-Show the city and the total number of patients in the city in the order from most to least patients
+-- Show the city and the total number of patients in the city in the order from most to least patients
 SELECT city, COUNT(patient_id) FROM patients
 GROUP BY city
 ORDER BY COUNT(patient_id) DESC;
